@@ -39,17 +39,31 @@ public class EmployeeService {
     }
 
     // Méthode pour mettre à jour un employé
-    public void updateEmployee(Employee employee) {
+    public void updateEmployee(Employee employee, int id) {
         Transaction transaction = null;
-
+    
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.update(employee);
+    
+            Employee existingEmployee = session.get(Employee.class, id);
+            if (existingEmployee != null) {
+                existingEmployee.setName(employee.getName());
+                existingEmployee.setEmail(employee.getEmail());
+                existingEmployee.setPhone(employee.getPhone());
+                existingEmployee.setDepartment(employee.getDepartment());
+                existingEmployee.setPosition(employee.getPosition());
+    
+                session.update(existingEmployee);
+            } else {
+                System.out.println("Employee not found with ID: " + id);
+            }
+    
             transaction.commit();
         } catch (Exception e) {
             handleTransactionError(transaction, e);
         }
     }
+    
 
     // Méthode pour supprimer un employé
     public void deleteEmployee(int id) {
