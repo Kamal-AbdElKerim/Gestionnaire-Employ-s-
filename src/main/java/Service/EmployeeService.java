@@ -34,7 +34,7 @@ public class EmployeeService {
     // Méthode pour récupérer tous les employés
     public List<Employee> getAllEmployees() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Employee> query = session.createQuery("FROM Employee", Employee.class);
+            Query<Employee> query = session.createQuery("FROM Employee e ORDER BY e.createdAt DESC", Employee.class);
             return query.list();
         }
     }

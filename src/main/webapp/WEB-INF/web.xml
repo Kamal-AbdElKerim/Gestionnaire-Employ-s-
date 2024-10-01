@@ -6,19 +6,27 @@
   <display-name>Archetype Created Web Application</display-name>
 
 
+
+
+
   <servlet>
     <servlet-name>AddEmployeeServlet</servlet-name>
     <servlet-class>controller.AddEmployeeServlet</servlet-class>
   </servlet>
+
+
 
   <servlet-mapping>
     <servlet-name>AddEmployeeServlet</servlet-name>
     <url-pattern>/addEmployee</url-pattern>
   </servlet-mapping>
 
+
+
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>addEmployee</welcome-file>
   </welcome-file-list>
+
 
 </web-app>
 

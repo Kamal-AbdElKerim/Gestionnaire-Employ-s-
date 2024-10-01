@@ -1,11 +1,14 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="model.Employee" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>Employee List</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/main.scss" />
-
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
   </head>
   <body>
 
@@ -114,110 +117,111 @@
         </form>
 
       </div>
-      <div class="list">
-        <!-- one user  -->
-        <div class="OnePost">
-          <div class="img">
-            <img src="assets/image/images.png" alt="" />
-          </div>
-          <div class="profile">
-            <h3>islam</h3>
-            <p>islam@gmail.com</p>
-          </div>
-          <div class="moreinfo">
-            <!-- HTML !-->
-            <button class="button-33" role="button" type="button" id="myBtn">
-              <i class="fa-regular fa-circle-question"></i>
-            </button>
-            <button
-              class="button-33 bg_denger"
-              role="button"
-              type="button"
-              id="myBtn"
-            >
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
-          </div>
+    <div class="list">
+      <%
+        List<Employee> employees = (List<Employee>) request.getAttribute("employees");
+        System.out.println("123" + employees);
+        if (employees != null) {
+          for (Employee employee : employees) {
+      %>
+      <!-- one user  -->
+      <div class="OnePost">
+        <div class="img">
+          <img src="assets/image/images.png" alt="" />
         </div>
-        <!-- one user  -->
-        <!-- one user  -->
-        <div class="OnePost">
-          <div class="img">
-            <img src="assets/image/images.png" alt="" />
-          </div>
-          <div class="profile">
-            <h3>islam</h3>
-            <p>islam@gmail.com</p>
-          </div>
-          <div class="moreinfo">
-            <!-- HTML !-->
-            <button class="button-33" role="button" type="button" id="myBtn">
-              <i class="fa-regular fa-circle-question"></i>
-            </button>
-            <button
-              class="button-33 bg_denger"
-              role="button"
-              type="button"
-              id="myBtn"
-            >
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
-          </div>
+        <div class="profile">
+          <h3><%= employee.getName() %></h3>
+          <p><%= employee.getEmail() %></p>
         </div>
-        <!-- one user  -->
+        <div class="moreinfo">
+          <!-- HTML !-->
+          <button class="button-33 more-info-btn" type="button"
+                  data-name="<%= employee.getName() %>"
+                  data-email="<%= employee.getEmail() %>"
+                  data-phone="<%= employee.getPhone() %>"
+          data-department="<%= employee.getDepartment() %>"
+          data-position="<%= employee.getPosition() %>">
+          <i class="fa-regular fa-circle-question"></i>
+          </button>
+          <button class="button-33 bg_denger" type="button">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
       </div>
+      <!-- one user  -->
+      <%
+          }
+        }
+      %>
+    </div>
 
-      <!-- The Modal -->
-      <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-          <div class="cookie-card">
-            <span class="title">🍪 islam</span>
-            <span class="close">&times;</span>
-            <p class="description">Email : islam@gmail.com</p>
-            <p class="description">Département : Département 1</p>
-            <p class="description">Poste : Poste 1</p>
-            <div class="actions">
-              <button disabled class="accept">
-                0669474622
-                <span> <i class="fa-solid fa-phone-volume"></i></span>
-              </button>
-              <button class="accept bg-green">
-                <i class="fa-regular fa-pen-to-square"></i>
-              </button>
-            </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="cookie-card">
+          <span class="title">🍪 <span id="modal-name"></span></span>
+          <span class="close">&times;</span>
+          <p class="description">Email : <span id="modal-email"></span></p>
+          <p class="description">Département : <span id="modal-department"></span></p>
+          <p class="description">Poste : <span id="modal-position"></span></p>
+          <div class="actions">
+            <button class="accept" id="accept">
+              <span id="modal-phone-display"></span> <!-- Updated phone display here -->
+              <span> <i class="fa-solid fa-phone-volume"></i></span>
+            </button>
+            <button class="accept bg-green">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </body>
   <script>
     // Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal
-    btn.onclick = function () {
-      modal.style.display = "block";
-    };
+    // Add event listeners to all "More Info" buttons
+    var moreInfoButtons = document.getElementsByClassName("more-info-btn");
+    for (let button of moreInfoButtons) {
+      button.onclick = function() {
+        // Get employee data from data attributes
+        var name = this.getAttribute("data-name");
+        var email = this.getAttribute("data-email");
+        var phone = this.getAttribute("data-phone"); // Get phone number
+        var department = this.getAttribute("data-department");
+        var position = this.getAttribute("data-position");
+
+        // Update modal content
+        document.getElementById("modal-name").innerText = name;
+        document.getElementById("modal-email").innerText = email;
+        document.getElementById("modal-department").innerText = department;
+        document.getElementById("modal-position").innerText = position;
+        document.getElementById("modal-phone-display").innerText = phone; // Set phone number in button
+
+        // Show the modal
+        modal.style.display = "block";
+      };
+    }
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
+    span.onclick = function() {
       modal.style.display = "none";
     };
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
+    window.onclick = function(event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
     };
   </script>
+
   <script
     src="https://kit.fontawesome.com/e9ea9ee727.js"
     crossorigin="anonymous"
