@@ -13,15 +13,23 @@ public class EmployeeService {
     // Méthode pour ajouter un nouvel employé
     public void addEmployee(Employee employee) {
         Transaction transaction = null;
-
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
+
+            // Save the employee to the database
             session.save(employee);
+
+            // Commit the transaction after the save is successful
             transaction.commit();
         } catch (Exception e) {
-            handleTransactionError(transaction, e);
+            if (transaction != null) {
+                transaction.rollback();  // Rollback transaction on failure
+            }
+            e.printStackTrace();
         }
     }
+
+
 
     // Méthode pour récupérer tous les employés
     public List<Employee> getAllEmployees() {
@@ -82,10 +90,15 @@ public class EmployeeService {
     }
 
     // Méthode pour gérer les erreurs de transaction
-    private void handleTransactionError(Transaction transaction, Exception e) {
+    public void handleTransactionError(Transaction transaction, Exception e) {
         if (transaction != null) {
-            transaction.rollback();
+            try {
+                transaction.rollback();
+            } catch (Exception rollbackException) {
+                rollbackException.printStackTrace();
+            }
         }
-        e.printStackTrace();
+        e.printStackTrace();  // Log the original exception
     }
+
 }

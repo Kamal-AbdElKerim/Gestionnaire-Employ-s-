@@ -1,24 +1,19 @@
 package model;
 
 
-import javax.persistence.*;
+import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "employees")
+
 public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-    @Column
     private String name;
-    @Column
     private String email;
-    @Column
     private String phone;
-    @Column
     private String department;
-    @Column
     private String position;
+    private LocalDateTime createdAt;
+
 
 
     public Employee(Long id, String name, String email, String phone, String department, String position) {
@@ -30,15 +25,17 @@ public class Employee {
         this.position = position;
     }
 
-    public Employee( String name, String email, String phone, String department, String position) {
+    public Employee( String name, String email, String phone, String department, String position , LocalDateTime createdAt) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.department = department;
         this.position = position;
+        this.createdAt = createdAt;
     }
 
     public Employee() {}
+
 
     public Long getId() {
         return id;
@@ -86,6 +83,27 @@ public class Employee {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", department='" + department + '\'' +
+                ", position='" + position + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
 

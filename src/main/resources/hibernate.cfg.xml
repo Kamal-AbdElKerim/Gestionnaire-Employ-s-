@@ -19,6 +19,8 @@
         <!-- Show SQL queries -->
         <property name="hibernate.show_sql">true</property>
 
+        <!-- Add the mapping file -->
+        <mapping resource="model/Employee.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
