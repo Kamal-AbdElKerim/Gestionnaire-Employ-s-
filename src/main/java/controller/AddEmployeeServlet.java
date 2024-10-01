@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import utility.EmployeeValidator;
+import utility.InputClearer;
 import utility.ValidationUtil;
 
 import java.io.IOException;
@@ -45,6 +46,10 @@ public class AddEmployeeServlet extends HttpServlet {
         // Ajouter l'employé via le service
         EmployeeService employeeService = new EmployeeService();
         employeeService.addEmployee(employee);
+
+
+        InputClearer.clearInputs(request);
+
 
         // Confirmation du succès de l'ajout
         request.setAttribute("AddEmployee", "L'employé a été ajouté avec succès !");

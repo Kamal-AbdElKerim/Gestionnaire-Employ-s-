@@ -30,7 +30,7 @@
                 id="username"
                 name="name"
                 placeholder="Username"
-                value="<%= request.getParameter("name") != null ? request.getParameter("name") : "" %>"              />
+                value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : "" %>"              />
             </li>
 
 
@@ -42,8 +42,8 @@
                 id="email"
                 name="email"
                 placeholder="Email"
-                value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>"              />
-              
+                value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>"              />
+
             </li>
             <li>
               <label for="phone"></label>
@@ -53,7 +53,7 @@
                 id="phone"
                 name="phone"
                 placeholder="Numéro de téléphone"
-                value="<%= request.getParameter("phone") != null ? request.getParameter("phone") : "" %>"              />
+                value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>"              />
 
 
             </li>
@@ -61,18 +61,18 @@
               <label for="department"></label>
               <select id="department" name="department">
                 <option value="">Sélectionnez un Département</option>
-                <option value="HR" <%= "HR".equals(request.getParameter("department")) ? "selected" : "" %>>Ressources Humaines</option>
-                <option value="Marketing" <%= "Marketing".equals(request.getParameter("department")) ? "selected" : "" %>>Marketing</option>
-                <option value="Sales" <%= "Sales".equals(request.getParameter("department")) ? "selected" : "" %>>Ventes</option>
+                <option value="HR" <%= "HR".equals(request.getAttribute("department")) ? "selected" : "" %>>Ressources Humaines</option>
+                <option value="Marketing" <%= "Marketing".equals(request.getAttribute("department")) ? "selected" : "" %>>Marketing</option>
+                <option value="Sales" <%= "Sales".equals(request.getAttribute("department")) ? "selected" : "" %>>Ventes</option>
               </select>
               <label for="position"></label>
               <select id="position" name="position">
                 <option value="">Sélectionnez un poste</option>
-                <option value="Developer" <%= "Developer".equals(request.getParameter("position")) ? "selected" : "" %>>Développeur</option>
-                <option value="Manager" <%= "Manager".equals(request.getParameter("position")) ? "selected" : "" %>>Manager</option>
-                <option value="HR Specialist" <%= "HR Specialist".equals(request.getParameter("position")) ? "selected" : "" %>>Spécialiste RH</option>
-                <option value="Marketing Specialist" <%= "Marketing Specialist".equals(request.getParameter("position")) ? "selected" : "" %>>Spécialiste Marketing</option>
-                <option value="Sales Representative" <%= "Sales Representative".equals(request.getParameter("position")) ? "selected" : "" %>>Représentant Commercial</option>
+                <option value="Developer" <%= "Developer".equals(request.getAttribute("position")) ? "selected" : "" %>>Développeur</option>
+                <option value="Manager" <%= "Manager".equals(request.getAttribute("position")) ? "selected" : "" %>>Manager</option>
+                <option value="HR Specialist" <%= "HR Specialist".equals(request.getAttribute("position")) ? "selected" : "" %>>Spécialiste RH</option>
+                <option value="Marketing Specialist" <%= "Marketing Specialist".equals(request.getAttribute("position")) ? "selected" : "" %>>Spécialiste Marketing</option>
+                <option value="Sales Representative" <%= "Sales Representative".equals(request.getAttribute("position")) ? "selected" : "" %>>Représentant Commercial</option>
               </select>
             </li>
 
