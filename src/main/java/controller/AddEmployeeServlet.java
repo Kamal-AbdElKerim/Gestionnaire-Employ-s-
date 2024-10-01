@@ -54,8 +54,6 @@ public class AddEmployeeServlet extends HttpServlet {
             return;
         }
 
-
-
         // Ajouter l'employé via le service
         employeeService.addEmployee(employee);
 
@@ -76,7 +74,7 @@ public class AddEmployeeServlet extends HttpServlet {
 
         // Set the list of employees as a request attribute
         request.setAttribute("employees", employees);
-        System.out.println("employees" + employees  );
+
         // Forward the request to index.jsp with the employee data
         request.getRequestDispatcher("/index.jsp").forward(request, response);
 

@@ -74,20 +74,30 @@ public class EmployeeService {
     
 
     // Méthode pour supprimer un employé
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(Long id) {  // Change int to Long
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Employee employee = session.get(Employee.class, id);
+            Employee employee = session.get(Employee.class, id);  
             if (employee != null) {
                 session.delete(employee);
+                System.out.println("Employee deleted successfully with ID: " + id);
+            } else {
+                System.out.println("No employee found with ID: " + id);
             }
-            transaction.commit();
+
+            transaction.commit(); // Commit if no exceptions were thrown
         } catch (Exception e) {
-            handleTransactionError(transaction, e);
+            // Handle transaction rollback in case of errors
+            if (transaction != null) {
+                transaction.rollback();  // Roll back the transaction if an error occurs
+                System.out.println("Transaction rolled back due to: " + e.getMessage());
+            }
+            handleTransactionError(transaction, e);  // Your custom error handling
         }
     }
+
 
     // Méthode pour gérer les erreurs de transaction
     public void handleTransactionError(Transaction transaction, Exception e) {

@@ -143,9 +143,12 @@
           data-position="<%= employee.getPosition() %>">
           <i class="fa-regular fa-circle-question"></i>
           </button>
-          <button class="button-33 bg_denger" type="button">
-            <i class="fa-solid fa-trash-can"></i>
-          </button>
+          <form action="DeleteEmployeeServlet" method="post">
+            <input type="hidden" name="employeeId" value="<%= employee.getId() %>" />
+            <button class="button-33 bg_denger" type="submit" onclick="return confirm('Are you sure you want to delete this employee?');">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </form>
         </div>
       </div>
       <!-- one user  -->

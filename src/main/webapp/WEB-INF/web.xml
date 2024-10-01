@@ -14,11 +14,21 @@
     <servlet-class>controller.AddEmployeeServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>DeleteEmployeeServlet</servlet-name>
+    <servlet-class>controller.DeleteEmployeeServlet</servlet-class>
+  </servlet>
+
 
 
   <servlet-mapping>
     <servlet-name>AddEmployeeServlet</servlet-name>
     <url-pattern>/addEmployee</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DeleteEmployeeServlet</servlet-name>
+    <url-pattern>/DeleteEmployeeServlet</url-pattern>
   </servlet-mapping>
 
 
