@@ -12,6 +12,7 @@ import utility.ValidationUtil;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +22,12 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AddEmployeeServlet extends HttpServlet {
     private EmployeeService employeeService = new EmployeeService();
+    private  List<Employee> filteredEmployees ;
 
     @Override
     public void init() throws ServletException {
         super.init();
+
         // You can perform initialization here if needed
     }
 
@@ -50,7 +53,10 @@ public class AddEmployeeServlet extends HttpServlet {
             request.setAttribute("department", department);
             request.setAttribute("position", position);
 
-            doGet(request, response);
+            request.setAttribute("employees", filteredEmployees);
+
+            request.getRequestDispatcher("/Employee/index.jsp").forward(request, response);
+
             return;
         }
 
@@ -70,13 +76,33 @@ public class AddEmployeeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         List<Employee> employees = employeeService.getAllEmployees();
 
+        String searchbar = request.getParameter("searchbar");
+
+         filteredEmployees = employees;
+
+        if (searchbar != null && !searchbar.trim().isEmpty()) {
+            String Search = searchbar.toLowerCase();
+            request.setAttribute("searchbar", searchbar);
+            filteredEmployees = employees.stream()
+                    .filter(employee -> employee.getName().toLowerCase().contains(Search) ||
+                            employee.getEmail().toLowerCase().contains(Search) ||
+                            employee.getDepartment().equalsIgnoreCase(Search) ||
+                            employee.getPosition().equalsIgnoreCase(Search))
+                    .collect(Collectors.toList());
+        }
+
+
+
+
+
         // Set the list of employees as a request attribute
-        request.setAttribute("employees", employees);
+        request.setAttribute("employees", filteredEmployees);
 
         // Forward the request to index.jsp with the employee data
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/Employee/index.jsp").forward(request, response);
 
     }
 }

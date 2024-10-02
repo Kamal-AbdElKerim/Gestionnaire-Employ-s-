@@ -10,7 +10,7 @@ public class HibernateUtil {
 
     static {
         try {
-            sessionFactory = new Configuration().configure().addAnnotatedClass(Employee.class).buildSessionFactory();
+            sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class).buildSessionFactory();
         } catch (Exception e) {
             e.printStackTrace();
         }

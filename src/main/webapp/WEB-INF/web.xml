@@ -19,6 +19,11 @@
     <servlet-class>controller.DeleteEmployeeServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>UpdateEmployeeServlet</servlet-name>
+    <servlet-class>controller.UpdateEmployeeServlet</servlet-class>
+  </servlet>
+
 
 
   <servlet-mapping>
@@ -29,6 +34,12 @@
   <servlet-mapping>
     <servlet-name>DeleteEmployeeServlet</servlet-name>
     <url-pattern>/DeleteEmployeeServlet</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet-mapping>
+    <servlet-name>UpdateEmployeeServlet</servlet-name>
+    <url-pattern>/UpdateEmployeeServlet</url-pattern>
   </servlet-mapping>
 
 

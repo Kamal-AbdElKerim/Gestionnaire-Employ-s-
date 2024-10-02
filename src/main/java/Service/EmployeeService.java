@@ -40,14 +40,14 @@ public class EmployeeService {
     }
 
     // Méthode pour récupérer un employé par son ID
-    public Employee getEmployeeById(int id) {
+    public Employee getEmployeeById(long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(Employee.class, id);
         }
     }
 
     // Méthode pour mettre à jour un employé
-    public void updateEmployee(Employee employee, int id) {
+    public void updateEmployee(Employee employee, long id) {
         Transaction transaction = null;
     
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -79,10 +79,9 @@ public class EmployeeService {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Employee employee = session.get(Employee.class, id);  
+            Employee employee = session.get(Employee.class, id);
             if (employee != null) {
                 session.delete(employee);
-                System.out.println("Employee deleted successfully with ID: " + id);
             } else {
                 System.out.println("No employee found with ID: " + id);
             }

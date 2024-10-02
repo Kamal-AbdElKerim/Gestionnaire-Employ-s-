@@ -22,5 +22,8 @@
         <!-- Add the mapping file -->
         <mapping resource="model/Employee.hbm.xml"/>
 
+
+
+
     </session-factory>
 </hibernate-configuration>

@@ -20,11 +20,23 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
+
+  justify-content: right;
+  color: white;
+  width: 100%;
+
+  height: 600px;
+  overflow-x: auto;
+}
+.affichag{
+  background: url(https://source.unsplash.com/TV2gg2kZD1o/1600x800);
+  background-repeat: no-repeat;
+  padding: 10px 20px;
   justify-content: right;
   color: white;
   box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, .5);
   width: 60%;
-  padding: 20px 40px;
+
   height: 600px;
   overflow-x: auto;
 }
@@ -51,7 +63,7 @@ body {
 }
 .OnePost {
   color: white;
-  width: 90%;
+  width: 80%;
   height: 100px;
   border-radius: 30px;
   display: flex;
@@ -380,6 +392,20 @@ button:active {
     width: 100%;
     padding: 10px;
     overflow-x: hidden;
+    display: block;
+  }
+  .affichag {
+    width: 100%;
+    padding: 10px;
+    display: block;
+    overflow-x: hidden;
+  }
+  img {
+    width: 67%;
+  }
+  .num_empl{
+    width: 5%;
+
   }
 }
 @media screen and (max-width: 768px) {
@@ -394,5 +420,79 @@ button:active {
     padding: 10px;
     display: block;
     overflow-x: hidden;
+    display: block;
   }
+  .affichag {
+    width: 100%;
+    padding: 10px;
+    display: block;
+    overflow-x: hidden;
+  }
+  img {
+    width: 67%;
+  }
+  .num_empl{
+    width: 5%;
+
+  }
+}
+
+.num_empl {
+  background-color: #1e3d3d;
+  height: 45px;
+  border-radius: 50%;
+  padding: 10px;
+  color: white;
+}
+
+/* From Uiverse.io by LightAndy1 */
+.group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 190px;
+  margin-bottom: 20px;
+}
+
+.input {
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height: 45px;
+  padding-left: 2.5rem;
+  box-shadow: 0 0 0 1.5px #2b2c37, 0 0 25px -17px #000;
+  border: 0;
+  border-radius: 12px;
+  background-color: #16171d;
+  outline: none;
+  color: #bdbecb;
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: text;
+  z-index: 0;
+}
+
+.input::placeholder {
+  color: #bdbecb;
+}
+
+.input:hover {
+  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
+}
+
+.input:active {
+  transform: scale(0.95);
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2.5px #2f303d;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  fill: #bdbecb;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  z-index: 1;
 }
