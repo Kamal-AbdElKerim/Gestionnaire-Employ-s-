@@ -16,6 +16,7 @@ body {
   justify-content: space-between;
   margin: auto;
   width: 100%;
+  margin-top: 35px;
 }
 .list {
   background: url(https://source.unsplash.com/TV2gg2kZD1o/1600x800);
@@ -92,11 +93,13 @@ img {
   width: 50%;
 }
 .OnePost .moreinfo {
-  width: 30%;
-  height: 100%;
+
   display: flex;
-  justify-content: center;
+  justify-content:left;
   align-items: center;
+  margin-left: 80px;
+
+  margin-top: -11px;
 }
 .profile h3 {
   margin-top: 4px;
@@ -131,6 +134,7 @@ img {
   padding: 20px 0;
   color: rgba(10, 180, 180, 1);
 }
+
 .signupForm {
   width: 100%;
   padding: 30px 0;
@@ -155,9 +159,7 @@ img {
 }
 select {
   background-color: #132323;
-  /* Change background color */
   color: white;
-  /* Change text color */
   border-radius: 5px;
   border: 1px solid rgba(10, 180, 180, 1);
   margin: 15px 0;
@@ -228,17 +230,17 @@ margin-left: 9px;
   justify-content: center;
   margin-top: 10px;
 }
-button span {
+/* button span {
   display: block;
   margin-left: 0.3em;
   transition: all 0.3s ease-in-out;
-}
-button svg {
+} */
+/* button svg {
   display: block;
   transform-origin: center center;
   transition: transform 0.3s ease-in-out;
-}
-button:hover .svg-wrapper {
+} */
+/* button:hover .svg-wrapper {
   animation: fly-1 0.6s ease-in-out infinite alternate;
 }
 button:hover svg {
@@ -249,36 +251,36 @@ button:hover span {
 }
 button:active {
   transform: scale(0.95);
-}
-@keyframes fly-1 {
+} */
+/* @keyframes fly-1 {
   from {
     transform: translateY(0.1em);
   }
   to {
     transform: translateY(-0.1em);
   }
-}
+} */
 .modal {
   display: none;
-  /* Hidden by default */
+  
   position: fixed;
-  /* Stay in place */
+ 
   z-index: 1;
-  /* Sit on top */
+  
   padding-top: 100px;
-  /* Location of the box */
+ 
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
+  
   height: 100%;
-  /* Full height */
+ 
   overflow: auto;
-  /* Enable scroll if needed */
+ 
   background-color: #000;
-  /* Fallback color */
+ 
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
+  
 }
 /* Modal Content */
 .modal-content {
@@ -381,61 +383,7 @@ button:active {
 .accept:hover {
   background-color: #000;
 }
-@media screen and (max-width: 914px) {
-  .contianer {
-    display: block;
-  }
-  .signupSection {
-    width: 100%;
-  }
-  .list {
-    width: 100%;
-    padding: 10px;
-    overflow-x: hidden;
-    display: block;
-  }
-  .affichag {
-    width: 100%;
-    padding: 10px;
-    display: block;
-    overflow-x: hidden;
-  }
-  img {
-    width: 67%;
-  }
-  .num_empl{
-    width: 5%;
 
-  }
-}
-@media screen and (max-width: 768px) {
-  .contianer {
-    display: block;
-  }
-  .signupSection {
-    width: 100%;
-  }
-  .list {
-    width: 100%;
-    padding: 10px;
-    display: block;
-    overflow-x: hidden;
-    display: block;
-  }
-  .affichag {
-    width: 100%;
-    padding: 10px;
-    display: block;
-    overflow-x: hidden;
-  }
-  img {
-    width: 67%;
-  }
-  .num_empl{
-    width: 5%;
-
-  }
-}
 
 .num_empl {
   background-color: #1e3d3d;
@@ -452,16 +400,19 @@ button:active {
   align-items: center;
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
-
+.more-info-btn{
+  background-color: #f2f267;
+  box-shadow: rgb(187 187 44 / 20%) 0 -25px 18px -14px inset, rgb(187 187 44 / 15%) 0 1px 2px, rgb(182 187 44 / 15%) 0 2px 4px, rgb(187 165 44 / 15%) 0 4px 8px, rgb(172 187 44 / 15%) 0 8px 16px, rgb(172 187 44 / 15%) 0 16px 32px;
+}
 /* From Uiverse.io by barisdogansutcu */
 .button_Count {
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 23px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.4px;
@@ -532,4 +483,57 @@ button:active {
 
 .filter input {
   margin-left: 10px;
+}
+@media screen and (max-width: 914px) {
+  .contianer {
+    display: block;
+  }
+  .signupSection {
+    width: 100%;
+  }
+  .list {
+    width: 100%;
+    padding: 10px;
+    overflow-x: hidden;
+    display: block;
+  }
+  .affichag {
+    width: 100%;
+    padding: 10px;
+    display: block;
+    overflow-x: hidden;
+  }
+  img {
+    width: 67%;
+  }
+  .filter  {
+    margin-left: 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .contianer {
+    display: block;
+  }
+  .signupSection {
+    width: 100%;
+  }
+  .list {
+    width: 100%;
+    padding: 10px;
+    display: block;
+    overflow-x: hidden;
+    display: block;
+  }
+  .affichag {
+    width: 100%;
+    padding: 10px;
+    display: block;
+    overflow-x: hidden;
+  }
+  img {
+    width: 67%;
+  }
+  .filter  {
+    margin-left: 20px;
+  }
 }

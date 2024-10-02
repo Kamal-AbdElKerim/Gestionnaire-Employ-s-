@@ -1,5 +1,4 @@
-package utility;
-
+package utility.Validator;
 
 import model.Employee;
 
@@ -54,4 +53,3 @@ public class EmployeeValidator {
         return position != null && !position.trim().isEmpty();
     }
 }
-

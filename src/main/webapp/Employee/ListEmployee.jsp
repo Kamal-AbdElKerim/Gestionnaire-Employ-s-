@@ -65,31 +65,32 @@
         <div class="profile">
             <h3><%= employee.getName() %></h3>
             <p><%= employee.getEmail() %></p>
-        </div>
-        <div class="moreinfo">
-            <!-- HTML !-->
-            <button class="button-33 more-info-btn" type="button"
-                    data-name="<%= employee.getName() %>"
-                    data-email="<%= employee.getEmail() %>"
-                    data-phone="<%= employee.getPhone() %>"
-                    data-department="<%= employee.getDepartment() %>"
-                    data-position="<%= employee.getPosition() %>">
-                <i class="fa-regular fa-circle-question"></i>
-            </button>
+            <div class="moreinfo">
+                <!-- HTML !-->
+                <button class="button-33 more-info-btn" type="button"
+                        data-name="<%= employee.getName() %>"
+                        data-email="<%= employee.getEmail() %>"
+                        data-phone="<%= employee.getPhone() %>"
+                        data-department="<%= employee.getDepartment() %>"
+                        data-position="<%= employee.getPosition() %>">
+                    <i class="fa-regular fa-circle-question"></i>
+                </button>
 
-            <form action="UpdateEmployeeServlet" method="get">
-                <input type="hidden" name="employeeId" value="<%= employee.getId() %>" />
-                <button class="button-33 " type="submit" >
-                    <i class="fa-regular fa-pen-to-square"></i>
-                </button>
-            </form>
-            <form action="DeleteEmployeeServlet" method="post">
-                <input type="hidden" name="employeeId" value="<%= employee.getId() %>" />
-                <button class="button-33 bg_denger" type="submit" onclick="return confirm('Are you sure you want to delete this employee?');">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            </form>
+                <form action="UpdateEmployeeServlet" method="get">
+                    <input type="hidden" name="employeeId" value="<%= employee.getId() %>" />
+                    <button class="button-33 " type="submit" >
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </button>
+                </form>
+                <form action="DeleteEmployeeServlet" method="post">
+                    <input type="hidden" name="employeeId" value="<%= employee.getId() %>" />
+                    <button class="button-33 bg_denger" type="submit" onclick="return confirm('Are you sure you want to delete this employee?');">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </form>
+            </div>
         </div>
+
     </div>
     <!-- one user  -->
     <%
@@ -106,11 +107,11 @@
             <span class="title"><span id="modal-name"></span></span>
             <span class="close">&times;</span>
             <p class="description">Email : <span id="modal-email"></span></p>
-            <p class="description">Département : <span id="modal-department"></span></p>
+            <p class="description">Departement : <span id="modal-department"></span></p>
             <p class="description">Poste : <span id="modal-position"></span></p>
             <div class="actions">
                 <button class="accept" id="accept">
-                    <span id="modal-phone-display"></span> <!-- Updated phone display here -->
+                    <span id="modal-phone-display"></span>
                     <span> <i class="fa-solid fa-phone-volume"></i></span>
                 </button>
 

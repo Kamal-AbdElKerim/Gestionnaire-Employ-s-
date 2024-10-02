@@ -2,41 +2,43 @@ package controller;
 
 import Service.EmployeeService;
 import model.Employee;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import utility.EmployeeValidator;
+import utility.Validator.EmployeeValidator;
 import utility.InputClearer;
-import utility.ValidationUtil;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 public class AddEmployeeServlet extends HttpServlet {
     private EmployeeService employeeService = new EmployeeService();
-    private  List<Employee> filteredEmployees ;
+    private List<Employee> filteredEmployees;
 
     @Override
     public void init() throws ServletException {
         super.init();
 
-        // You can perform initialization here if needed
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       String name = request.getParameter("name");
-       String email = request.getParameter("email");
-       String phone = request.getParameter("phone");
-       String department = request.getParameter("department");
-       String position = request.getParameter("position");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Boolean isupdating = (Boolean) request.getAttribute("isupdating");
+
+        System.out.println("isupdating: " + isupdating);
+        if (isupdating != null && isupdating) {
+            System.out.println("is true");
+            doGet(request, response);
+            return;
+        }
+
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String department = request.getParameter("department");
+        String position = request.getParameter("position");
 
         Employee employee = new Employee(name, email, phone, department, position, LocalDateTime.now());
 
@@ -63,19 +65,18 @@ public class AddEmployeeServlet extends HttpServlet {
         // Ajouter l'employé via le service
         employeeService.addEmployee(employee);
 
-
         InputClearer.clearInputs(request);
 
-
-        // Confirmation du succès de l'ajout
-        request.setAttribute("AddEmployee", "L'employé a été ajouté avec succès !");
+        request.setAttribute("message", "L'employé " + name + " a été ajouté avec succès !");
+        request.setAttribute("color", "#2E8B57");
 
         doGet(request, response);
 
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         List<Employee> employees = employeeService.getAllEmployees();
 
@@ -84,7 +85,7 @@ public class AddEmployeeServlet extends HttpServlet {
         String departement = request.getParameter("Departement");
         String poste = request.getParameter("Poste");
 
-         filteredEmployees = employees;
+        filteredEmployees = employees;
 
         if (searchbar != null && !searchbar.trim().isEmpty()) {
             String Search = searchbar.toLowerCase();
@@ -106,7 +107,7 @@ public class AddEmployeeServlet extends HttpServlet {
                     .collect(Collectors.toList());
         }
 
-// Filter by position if provided
+        // Filter by position if provided
         if (poste != null && !poste.trim().isEmpty()) {
             String pos = poste.toLowerCase();
             request.setAttribute("Poste", poste);
@@ -114,10 +115,6 @@ public class AddEmployeeServlet extends HttpServlet {
                     .filter(employee -> employee.getPosition().equalsIgnoreCase(pos))
                     .collect(Collectors.toList());
         }
-
-
-
-
 
         // Set the list of employees as a request attribute
         request.setAttribute("employees", filteredEmployees);
@@ -127,4 +124,3 @@ public class AddEmployeeServlet extends HttpServlet {
 
     }
 }
-

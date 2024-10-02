@@ -1,6 +1,5 @@
 package utility;
 
-
 import model.Employee;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -10,7 +9,8 @@ public class HibernateUtil {
 
     static {
         try {
-            sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class).buildSessionFactory();
+            sessionFactory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
+                    .buildSessionFactory();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -20,4 +20,3 @@ public class HibernateUtil {
         return sessionFactory;
     }
 }
-

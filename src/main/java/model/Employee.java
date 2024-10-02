@@ -1,8 +1,6 @@
 package model;
 
-
 import java.time.LocalDateTime;
-
 
 public class Employee {
 
@@ -14,8 +12,6 @@ public class Employee {
     private String position;
     private LocalDateTime createdAt;
 
-
-
     public Employee(Long id, String name, String email, String phone, String department, String position) {
         this.id = id;
         this.name = name;
@@ -25,7 +21,8 @@ public class Employee {
         this.position = position;
     }
 
-    public Employee( String name, String email, String phone, String department, String position , LocalDateTime createdAt) {
+    public Employee(String name, String email, String phone, String department, String position,
+            LocalDateTime createdAt) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -34,8 +31,8 @@ public class Employee {
         this.createdAt = createdAt;
     }
 
-    public Employee() {}
-
+    public Employee() {
+    }
 
     public Long getId() {
         return id;
@@ -106,4 +103,3 @@ public class Employee {
                 '}';
     }
 }
-

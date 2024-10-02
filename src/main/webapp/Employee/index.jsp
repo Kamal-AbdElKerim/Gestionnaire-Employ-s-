@@ -67,7 +67,9 @@
                 <option value="Ressources Humaines" <%= "Ressources Humaines".equals(request.getAttribute("department")) ? "selected" : "" %>>Ressources Humaines</option>
                 <option value="Marketing" <%= "Marketing".equals(request.getAttribute("department")) ? "selected" : "" %>>Marketing</option>
                 <option value="Ventes" <%= "Ventes".equals(request.getAttribute("department")) ? "selected" : "" %>>Ventes</option>
+
               </select>
+
               <label for="position"></label>
               <select id="position" name="position">
                 <option value="">Sélectionnez un poste</option>
@@ -101,17 +103,9 @@
               </button>
             </li>
           </ul>
-          <%
-            String message = (String) request.getAttribute("AddEmployee");
-            if (message != null) {
-          %>
-          <div class="alert_c">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-             <%= message %>.
-          </div>
-          <%
-            }
-          %>
+
+
+          <%@ include file="../alert/alert.jsp" %>
 
 
         </form>

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Employee List</title>
+    <title>Employee Update</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
@@ -20,7 +20,7 @@
   <div class="contianer">
       <div class="signupSection">
         <form action="UpdateEmployeeServlet" method="POST" class="signupForm" name="signupform">
-          <h2>update employé</h2>
+          <h2>update employee</h2>
           <%
             String error = (String) request.getAttribute("error");
             if (error != null) {
@@ -79,7 +79,7 @@
                 <option value="">Sélectionnez un Département</option>
                 <option value="Ressources Humaines" <%= "Ressources Humaines".equals(employee != null ? employee.getDepartment() : request.getAttribute("department")) ? "selected" : "" %>>Ressources Humaines</option>
                 <option value="Marketing" <%= "Marketing".equals(employee != null ? employee.getDepartment() : request.getAttribute("department")) ? "selected" : "" %>>Marketing</option>
-                <option value="Sales" <%= "Sales".equals(employee != null ? employee.getDepartment() : request.getAttribute("department")) ? "selected" : "" %>>Sales</option>
+                <option value="Ventes" <%= "Ventes".equals(employee != null ? employee.getDepartment() : request.getAttribute("department")) ? "selected" : "" %>>Ventes</option>
               </select>
             </li>
 
@@ -113,7 +113,7 @@
                     </svg>
                   </div>
                 </div>
-                <span>Ajouter</span>
+                <span>update</span>
               </button>
             </li>
           </ul>
