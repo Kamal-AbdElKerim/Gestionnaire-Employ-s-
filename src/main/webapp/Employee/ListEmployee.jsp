@@ -27,9 +27,29 @@
            <button type="submit" style="display: none;" ></button>
        </form>
 
+
         <button class="button_Count">
             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><%= employees != null ? employees.size() : "" %>
         </button>
+        <form  class="filter" method="get" action="addEmployee">
+            <input
+                    id="query2"
+                    class="input"
+                    type="search"
+                    placeholder="Departement..."
+                    name="Departement"
+                    value="<%= request.getAttribute("Departement") != null ? request.getAttribute("Departement") : "" %>"
+            />
+            <input
+                    id="query1"
+                    class="input"
+                    type="search"
+                    placeholder="Poste..."
+                    name="Poste"
+                    value="<%= request.getAttribute("Poste") != null ? request.getAttribute("Poste") : "" %>"
+            />
+            <button type="submit"  ><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
     </div>
     <div class="list">
     <%

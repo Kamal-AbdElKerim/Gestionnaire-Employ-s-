@@ -81,6 +81,9 @@ public class AddEmployeeServlet extends HttpServlet {
 
         String searchbar = request.getParameter("searchbar");
 
+        String departement = request.getParameter("Departement");
+        String poste = request.getParameter("Poste");
+
          filteredEmployees = employees;
 
         if (searchbar != null && !searchbar.trim().isEmpty()) {
@@ -91,6 +94,24 @@ public class AddEmployeeServlet extends HttpServlet {
                             employee.getEmail().toLowerCase().contains(Search) ||
                             employee.getDepartment().equalsIgnoreCase(Search) ||
                             employee.getPosition().equalsIgnoreCase(Search))
+                    .collect(Collectors.toList());
+        }
+
+        // Filter by department if provided
+        if (departement != null && !departement.trim().isEmpty()) {
+            String dept = departement.toLowerCase();
+            request.setAttribute("Departement", departement);
+            filteredEmployees = filteredEmployees.stream()
+                    .filter(employee -> employee.getDepartment().equalsIgnoreCase(dept))
+                    .collect(Collectors.toList());
+        }
+
+// Filter by position if provided
+        if (poste != null && !poste.trim().isEmpty()) {
+            String pos = poste.toLowerCase();
+            request.setAttribute("Poste", poste);
+            filteredEmployees = filteredEmployees.stream()
+                    .filter(employee -> employee.getPosition().equalsIgnoreCase(pos))
                     .collect(Collectors.toList());
         }
 

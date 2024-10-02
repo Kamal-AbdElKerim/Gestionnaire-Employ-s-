@@ -216,13 +216,10 @@ button {
   font-size: 20px;
   background: royalblue;
   color: white;
-  padding: 0.7em 1em;
-  padding-left: 0.9em;
-  display: flex;
-  align-items: center;
+padding: 10px;
   border: none;
   border-radius: 16px;
-  overflow: hidden;
+margin-left: 9px;
   transition: all 0.2s;
   cursor: pointer;
 }
@@ -524,4 +521,15 @@ button:active {
   height: 1rem;
   pointer-events: none;
   z-index: 1;
+}
+
+.filter{
+  display: flex;
+  justify-content:space-between;
+  margin-left: 100px;
+
+}
+
+.filter input {
+  margin-left: 10px;
 }
