@@ -120,7 +120,6 @@
     <%
       List<Employee> employees = (List<Employee>) request.getAttribute("employees");
     %>
-    <h1 class="num_empl"><%= employees != null ? employees.size() : "" %></h1>
 
     <jsp:include page="ListEmployee.jsp" />
 

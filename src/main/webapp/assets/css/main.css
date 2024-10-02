@@ -1,6 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 body {
   margin: 0;
@@ -451,9 +454,35 @@ button:active {
   line-height: 28px;
   align-items: center;
   position: relative;
-  max-width: 190px;
+  width: 100%;
   margin-bottom: 20px;
 }
+
+/* From Uiverse.io by barisdogansutcu */
+.button_Count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #7e97b8;
+  background-color: #e0e8ef;
+  border-style: solid;
+  border-width: 2px 2px 2px 2px;
+  border-color: rgba(255, 255, 255, 0.333);
+  border-radius: 40px 40px 40px 40px;
+  transform: translate(0px, 0px) rotate(0deg);
+  transition: 0.2s;
+  box-shadow: 1px 0px 3px 0px #ffffff, 0px -2px 5px 0px rgb(95 157 231 / 48%);
+  margin-left: 10px;
+}
+
+
+
+
 
 .input {
   font-family: "Montserrat", sans-serif;
