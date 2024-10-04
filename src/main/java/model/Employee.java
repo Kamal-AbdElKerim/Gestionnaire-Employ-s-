@@ -12,6 +12,8 @@ public class Employee {
     private String position;
     private LocalDateTime createdAt;
 
+    private static Long IDEmploye = 1L ;
+
     public Employee(Long id, String name, String email, String phone, String department, String position) {
         this.id = id;
         this.name = name;
@@ -23,12 +25,15 @@ public class Employee {
 
     public Employee(String name, String email, String phone, String department, String position,
             LocalDateTime createdAt) {
+        this.id = IDEmploye;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.department = department;
         this.position = position;
         this.createdAt = createdAt;
+
+        IDEmploye ++ ;
     }
 
     public Employee() {

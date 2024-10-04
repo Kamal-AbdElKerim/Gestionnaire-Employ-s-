@@ -52,7 +52,6 @@ public class UpdateEmployeeServlet extends HttpServlet {
         if (employeeId > 0) {
             try {
 
-                System.out.println(employeeId + "employeeId");
                 employeeService.updateEmployee(employee, employeeId);
                 // response.sendRedirect("addEmployee");
                 request.setAttribute("message", "employee " + name + " updated successfully");

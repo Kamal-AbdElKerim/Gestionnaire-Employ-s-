@@ -1,9 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="model.Employee" %>
-<%@ page import="java.util.List" %><%
-    List<Employee> employees = (List<Employee>) request.getAttribute("employees");
-%>
-
-
 
 <div class="affichag">
 
@@ -15,30 +11,31 @@
                 ></path>
             </g>
         </svg>
-       <form method="get" action="addEmployee">
-           <input
-                   id="query"
-                   class="input"
-                   type="search"
-                   placeholder="Search..."
-                   name="searchbar"
-                   value="<%= request.getAttribute("searchbar") != null ? request.getAttribute("searchbar") : "" %>"
-           />
-           <button type="submit" style="display: none;" ></button>
-       </form>
-
+        <form method="get" action="addEmployee">
+            <input
+                    id="query"
+                    class="input"
+                    type="search"
+                    placeholder="Search..."
+                    name="searchbar"
+                    value="${requestScope.searchbar != null ? requestScope.searchbar : '' }"
+            />
+            <button type="submit" style="display: none;"></button>
+        </form>
 
         <button class="button_Count">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><%= employees != null ? employees.size() : "" %>
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <c:out value="${not empty sessionScope.employees ? sessionScope.employees.size() : 0}" />
         </button>
-        <form  class="filter" method="get" action="addEmployee">
+
+        <form class="filter" method="get" action="addEmployee">
             <input
                     id="query2"
                     class="input"
                     type="search"
                     placeholder="Departement..."
                     name="Departement"
-                    value="<%= request.getAttribute("Departement") != null ? request.getAttribute("Departement") : "" %>"
+                    value="${requestScope.Departement != null ? requestScope.Departement : '' }"
             />
             <input
                     id="query1"
@@ -46,57 +43,51 @@
                     type="search"
                     placeholder="Poste..."
                     name="Poste"
-                    value="<%= request.getAttribute("Poste") != null ? request.getAttribute("Poste") : "" %>"
+                    value="${requestScope.Poste != null ? requestScope.Poste : '' }"
             />
-            <button type="submit"  ><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
     </div>
+
     <div class="list">
-    <%
+        <c:if test="${not empty sessionScope.employees}">
+            <c:forEach var="employee" items="${sessionScope.employees}">
+                <!-- one user -->
+                <div class="OnePost">
+                    <div class="img">
+                        <img src="assets/image/images.png" alt="" />
+                    </div>
+                    <div class="profile">
+                        <h3><c:out value="${employee.name}" /></h3>
+                        <p><c:out value="${employee.email}" /></p>
+                        <div class="moreinfo">
+                            <button class="button-33 more-info-btn" type="button"
+                                    data-name="${employee.name}"
+                                    data-email="${employee.email}"
+                                    data-phone="${employee.phone}"
+                                    data-department="${employee.department}"
+                                    data-position="${employee.position}">
+                                <i class="fa-regular fa-circle-question"></i>
+                            </button>
 
-        if (employees != null) {
-            for (Employee employee : employees) {
-    %>
-    <!-- one user  -->
-    <div class="OnePost">
-        <div class="img">
-            <img src="assets/image/images.png" alt="" />
-        </div>
-        <div class="profile">
-            <h3><%= employee.getName() %></h3>
-            <p><%= employee.getEmail() %></p>
-            <div class="moreinfo">
-                <!-- HTML !-->
-                <button class="button-33 more-info-btn" type="button"
-                        data-name="<%= employee.getName() %>"
-                        data-email="<%= employee.getEmail() %>"
-                        data-phone="<%= employee.getPhone() %>"
-                        data-department="<%= employee.getDepartment() %>"
-                        data-position="<%= employee.getPosition() %>">
-                    <i class="fa-regular fa-circle-question"></i>
-                </button>
-
-                <form action="UpdateEmployeeServlet" method="get">
-                    <input type="hidden" name="employeeId" value="<%= employee.getId() %>" />
-                    <button class="button-33 " type="submit" >
-                        <i class="fa-regular fa-pen-to-square"></i>
-                    </button>
-                </form>
-                <form action="DeleteEmployeeServlet" method="post">
-                    <input type="hidden" name="employeeId" value="<%= employee.getId() %>" />
-                    <button class="button-33 bg_denger" type="submit" onclick="return confirm('Are you sure you want to delete this employee?');">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-
-    </div>
-    <!-- one user  -->
-    <%
-            }
-        }
-    %>
+                            <form action="UpdateEmployeeServlet" method="get">
+                                <input type="hidden" name="employeeId" value="${employee.id}" />
+                                <button class="button-33 " type="submit">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </button>
+                            </form>
+                            <form action="DeleteEmployeeServlet" method="post">
+                                <input type="hidden" name="employeeId" value="${employee.id}" />
+                                <button class="button-33 bg_denger" type="submit" onclick="return confirm('Are you sure you want to delete this employee?');">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- one user -->
+            </c:forEach>
+        </c:if>
     </div>
 </div>
 
@@ -112,11 +103,9 @@
             <div class="actions">
                 <button class="accept" id="accept">
                     <span id="modal-phone-display"></span>
-                    <span> <i class="fa-solid fa-phone-volume"></i></span>
+                    <span><i class="fa-solid fa-phone-volume"></i></span>
                 </button>
-
             </div>
         </div>
     </div>
-</div>
 </div>
